@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Slider from 'react-slick';
+import SliderItem from './SliderItem';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -59,20 +60,23 @@ const ItemImg = styled.img`
 
 function SubCarousel() {
   //상품정보 받아오기
-  //   const [item, setItem] = useState([]);
-  //   const [price, setPrice] = useState([]);
+    const productId = [1, 2, 3];
+    const [item, setItem] = useState([]);
 
-  //   useEffect(() => {
-  //     try {
-  //       const res = axios.get('');
-  //       const getItem = res.data.name;
-  //       const getPrice = res.data.price;
-  //       setItem(getItem);
-  //       setPrice(getPrice);
-  //     } catch (error) {
-  //       console.log('상품정보를 가져오지 못했습니다.');
-  //     }
-  //   }, []);
+    // useEffect(() => {
+    //   productId.forEach((i)=>{
+    //     axios.get(`http://localhost:5001/product/${i}`).then(res => {
+    //       setItem(res.data);
+    //       console.log(item);
+    //     });
+    //   })
+    // }, []);
+
+    useEffect(() => {
+      productId.forEach((i)=>{
+          setItem(i);
+      })
+    }, []);
 
   const settings = {
     dots: true,
@@ -86,18 +90,7 @@ function SubCarousel() {
     <div>
       <StyledSlider {...settings}>
         <div>
-          <SubCardBox>
-            <ItemImg alt="SliderItem1" src="/image/bottega1.jpg" />
-            <p>상품1 1,000,000KRW</p>
-          </SubCardBox>
-          <SubCardBox>
-            <ItemImg alt="SliderItem1" src="/image/bottega1.jpg" />
-            <p>상품2 1,000,000KRW</p>
-          </SubCardBox>
-          <SubCardBox>
-            <ItemImg alt="SliderItem1" src="/image/bottega1.jpg" />
-            <p>상품3 1,000,000KRW</p>
-          </SubCardBox>
+          <SliderItem sliderItem={productId} />
         </div>
         <div>
           <SubCardBox>
